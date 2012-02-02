@@ -10,7 +10,7 @@ public class MyException extends Exception {
 		this.message = message;
 	}
 	
-	public void drukujBlad () {
+	public void printError () {
 		System.out.println(message);
 		System.out.println();
 	}
