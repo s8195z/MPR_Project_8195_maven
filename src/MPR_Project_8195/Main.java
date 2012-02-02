@@ -1,11 +1,7 @@
 package MPR_Project_8195;
 
-import javax.security.auth.login.Configuration;
-
-import com.pl.aga.services.PracownikDBManager;
-
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.*;
 import org.hibernate.classic.Session;
 
 
@@ -13,54 +9,51 @@ public class Main {
 
 public static void main(String[] args) throws Exception {
   
-	  Firma firma= new Firma("KRZAK");
+	  Company company= new Company("KRZAK");
 
-      firma.addPracownik(new Pracownik("Adam","Poniedzialek", 1, 689, 54));
-      firma.addPracownik(new Pracownik("Ewa","Nowak", 2, 2700, 39));
-      firma.addPracownik(new Pracownik("Jacek","Jutro", 3, 928,  34));
-      firma.addPracownik(new Pracownik("Jacek","Wczoraj", 4, 928,  34));
-      firma.addPracownik(new Pracownik("Wacek","Testowy", 5, 928,  34));
+      company.addEmployee(new Employee("Adam","Poniedzialek", 1, 689, 54));
+      company.addEmployee(new Employee("Ewa","Nowak", 2, 2700, 39));
+      company.addEmployee(new Employee("Jacek","Jutro", 3, 928,  34));
+      company.addEmployee(new Employee("Jacek","Wczoraj", 4, 928,  34));
+      company.addEmployee(new Employee("Wacek","Testowy", 5, 928,  34));
 
-     firma.addDzial(new Dzial(1,"Ksiegowosc"));
-     firma.addDzial(new Dzial(2, "Marketing"));
-      firma.addDzial(new Dzial(3, "Sprzedaz"));
-      firma.addDzial(new Dzial(4, "Dlatestowsprzedaz"));
-          
-     SessionFactory sessionFactory = new Configuration().configure().buildSessionFactroy();
-     Session session = sessionFactory.openSession(); //otwiera polaczenie z baza danych
-     session.beginTransaction();
-     session.save(p);   //wrzucamy obiekt do bazy
-     session.gettransaction().commit();
+      company.addDepartment(new Department(1,"Ksiegowosc"));
+      company.addDepartment(new Department(2, "Marketing"));
+      company.addDepartment(new Department(3, "Sprzedaz"));
+      company.addDepartment(new Department(4, "Dlatestowsprzedaz"));
       
-      //PracownikDBManager db = new PracownikDBManager ();
-     // db.addPracownik(new Pracownik("Adam","Poniedzialek", 1, 689, 54));
+      Employee p = new Employee("Adam", "Poniedzia³ek", 1, 689, 54) ;
+      SessionFactory sessionFactory = new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
+      Session session = sessionFactory.openSession(); //otwiera polaczenie z baza danych
+      session.beginTransaction();
+      session.save(p);   //wrzucamy obiekt do bazy
+      session.getTransaction().commit();
       
-      
-      
+      //EmployeeDBManager db = new EmployeeDBManager ();
+     // db.addEmployee(new Employee("Adam","Poniedzialek", 1, 689, 54));
+   
       /* Testowanie dzialow */
-      
-      
-      //firma.drukujDzialy();
-      //firma.drukujDzialByNazwa("Marketing"); //istnieje
-      //firma.deleteDzial("Marketing");
-      //firma.drukujDzialByNazwa("Marketing"); //nie istnieje
-      //firma.drukujDzialByPhrase("daz");
-      //firma.editDzialName("Dlatestowsprzedaz", "Administracja");
-      //firma.drukujDzialy();
-      
-      
+  
+      //company.printDepartmenty();
+      //company.printDepartmentByNazwa("Marketing"); //istnieje
+      //company.deleteDepartment("Marketing");
+      //company.printDepartmentByNazwa("Marketing"); //nie istnieje
+      //company.printDepartmentByPhrase("daz");
+      //company.editDepartmentName("Dlatestowsprzedaz", "Administracja");
+      //company.printDepartmenty();
+        
       /* Testowanie pracownikow */
       
-      firma.drukujPracownikow();
-      //firma.drukujPracownikByImie("Jacek");
-      //firma.drukujPracownikByPhrase("cek");
-      //firma.drukujPracownikByNazwisko("Testowy");
-      //firma.deletePracownik("Testowy");
-     //firma.drukujPracownikByNazwisko("Testowy");
-      //firma.editPracWynagrodzenie("Testowy", 22.0);
-      //firma.drukujPracownikByNazwisko("Testowy");
-      
-      
+      company.printEmployeesAll();
+      //company.printEmployeeByImie("Jacek");
+      //company.printEmployeeByPhrase("cek");
+      //company.printEmployeeByNazwisko("Testowy");
+      //company.deleteEmployee("Testowy");
+      //company.printEmployeeByNazwisko("Testowy");
+      //company.editEmplSalary("Testowy", 22.0);
+      //company.printEmployeeByNazwisko("Testowy");
+
    }
+
  }
       

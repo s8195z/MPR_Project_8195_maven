@@ -20,12 +20,10 @@
    
     <property name="hbm2ddl.auto">update</property>
    
-    <mapping class="com.pl.aga.projectfiles.Dzial" />
-    <mapping class="com.pl.aga.projectfiles.Firma />
-    <mapping class="com.pl.aga.projectfiles.Pracownik" />
+    <mapping class="MPR_Project_8195.Department" />
+    <mapping class="MPR_Project_8195.Employee" />
+    <mapping class="MPR_Project_8195.Company />    
 
     </session-factory>
 </hibernate-configuration>
-   
-
 

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry excluding="src/" kind="src" path=""/>
+	<classpathentry kind="src" path="Lib"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry exported="true" kind="lib" path="/home/student/Pobrane/hsqldb-2.2.7-20120103.113705-1.jar"/>
-	<classpathentry kind="lib" path="/home/student/Pulpit/hsqldb-2.2.7-20120103.113705-1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>
+	<classpathentry exported="true" kind="lib" path="Lib/hibernate-annotations-3.4.0.GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="Lib/hibernate-commons-annotations-3.2.0.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="Lib/hibernate-core-3.6.6.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="Lib/hsqldb-2.2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="Lib/persistence-api-1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
