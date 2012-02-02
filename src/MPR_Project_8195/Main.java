@@ -32,24 +32,24 @@ public static void main(String[] args) throws Exception {
    
       /* Testowanie dzialow */
   
-      //company.printDepartmenty();
-      //company.printDepartmentByNazwa("Marketing"); //istnieje
+      //company.printDepartments();
+      //company.printDepartmentByName("Marketing"); //istnieje
       //company.deleteDepartment("Marketing");
-      //company.printDepartmentByNazwa("Marketing"); //nie istnieje
+      //company.printDepartmentByName("Marketing"); //nie istnieje
       //company.printDepartmentByPhrase("daz");
       //company.editDepartmentName("Dlatestowsprzedaz", "Administracja");
-      //company.printDepartmenty();
+      //company.printDepartments();
         
       /* Testowanie pracownikow */
       
       company.printEmployeesAll();
-      //company.printEmployeeByImie("Jacek");
+      //company.printEmployeeByName("Jacek");
       //company.printEmployeeByPhrase("cek");
-      //company.printEmployeeByNazwisko("Testowy");
+      //company.printEmployeeBySurname"Testowy");
       //company.deleteEmployee("Testowy");
-      //company.printEmployeeByNazwisko("Testowy");
+      //company.printEmployeeBySurname("Testowy");
       //company.editEmplSalary("Testowy", 22.0);
-      //company.printEmployeeByNazwisko("Testowy");
+      //company.printEmployeeBySurname("Testowy");
 
    }
 
