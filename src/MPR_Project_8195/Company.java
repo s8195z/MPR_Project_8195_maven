@@ -63,7 +63,7 @@ import javax.persistence.OneToMany;
         	
           
           
-          /* Drukowanie list */
+       
         	
           private void printRegister(List<?> arr) {
         	  for (Object o : arr) {
@@ -118,7 +118,7 @@ import javax.persistence.OneToMany;
           
 
           public void printDepartmentByPhrase(String phrase) {
-        	  System.out.println("Dzia³y z fraz¹ " + phrase + ": ");
+        	  System.out.println("Dzialy z fraza " + phrase + ": ");
         	  try {
 				printRegister(searchDepartmentByPhrase(phrase));
 			} catch (MyException e) {
@@ -137,7 +137,7 @@ import javax.persistence.OneToMany;
 			}
           }
           
-          /* Departmentania na listach */
+
           
           public ArrayList<Employee> searchEmployeeByPhrase (String phrase) throws MyException {
         	  
@@ -151,7 +151,7 @@ import javax.persistence.OneToMany;
         		  }
         	  }
 
-        	  if (arr.isEmpty()) throw new MyException("Brak pracownika z fraz¹½" + phrase + " w imieniu lub nazwisku.");
+        	  if (arr.isEmpty()) throw new MyException("Brak pracownika z fraza" + phrase + " w imieniu lub nazwisku.");
         	  else return arr;
           }
           
@@ -210,7 +210,7 @@ import javax.persistence.OneToMany;
         	  
           }
  
-          /* Departmentania na dzialach */
+
           
           public ArrayList<Department> searchDepartmentByPhrase (String phrase) throws MyException {
         	  
@@ -221,7 +221,7 @@ import javax.persistence.OneToMany;
         			  arr.add(d);
         		  }
         	  }
-        	  if (arr.isEmpty()) throw new MyException("Brak dzialu z fraz¹½: " + phrase + " w nazwie.");
+        	  if (arr.isEmpty()) throw new MyException("Brak dzialu z fraza" + phrase + " w nazwie.");
         	  else return arr;
           }
           
@@ -239,7 +239,7 @@ import javax.persistence.OneToMany;
         	  for (Department d : departments) {
         		  if (d.getName() == name) return d;
         	  }
-        	  throw new MyException("Dzia³ o nazwie " + name + " nie istnieje w firmie.");
+        	  throw new MyException("Dzial o nazwie " + name + " nie istnieje w firmie.");
           }
           
           public void editDepartmentName (String oldName, String newName) {
@@ -259,7 +259,7 @@ import javax.persistence.OneToMany;
         		  departments.remove(getDepartmentRef(name));
         	  }
         	  catch (Exception e) {
-        		  System.out.println("Dzia³ o nazwie " + name + " nie funkcjonuje w firmie.");
+        		  System.out.println("Dzial o nazwie " + name + " nie funkcjonuje w firmie.");
         	  }
         	  
           }

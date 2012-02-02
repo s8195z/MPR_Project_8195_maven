@@ -22,15 +22,13 @@ public static void main(String[] args) throws Exception {
       company.addDepartment(new Department(3, "Sprzedaz"));
       company.addDepartment(new Department(4, "Dlatestowsprzedaz"));
       
-      Employee p = new Employee("Adam", "Poniedzia³ek", 1, 689, 54) ;
+      Employee p = new Employee("Adam", "Poniedzialek", 1, 689, 54) ;
       SessionFactory sessionFactory = new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
-      Session session = sessionFactory.openSession(); //otwiera polaczenie z baza danych
+      Session session = sessionFactory.openSession(); 
       session.beginTransaction();
-      session.save(p);   //wrzucamy obiekt do bazy
+      session.save(p);   
       session.getTransaction().commit();
       
-      //EmployeeDBManager db = new EmployeeDBManager ();
-     // db.addEmployee(new Employee("Adam","Poniedzialek", 1, 689, 54));
    
       /* Testowanie dzialow */
   

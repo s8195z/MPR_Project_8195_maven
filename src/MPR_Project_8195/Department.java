@@ -48,11 +48,7 @@ public class Department {
 		return "ID dzia³u: " + ID_department + ". Name: " + Name;
 	}
 	
-    //zamiast funkcji
-	//public void printDepartment()
-	//{
-	//	System.out.println("ID dzaï¿½u: " + ID_department +". Name: " +Name);
-	//}
+
 
    }
 
