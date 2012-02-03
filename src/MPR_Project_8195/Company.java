@@ -4,92 +4,94 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
+
 
     @Entity
     public class Company {
 
     	private String name; 
-    
-    	@OneToMany(mappedBy="contain", cascade=javax.persistence.CascadeType.PERSIST)
+        private List<Employee> employees = new ArrayList<Employee>();
+    	private List<Department> departments= new ArrayList<Department>();
     	
-         private List<Employee> employees= new ArrayList<Employee>();
-         @OneToMany(mappedBy="contain", cascade=javax.persistence.CascadeType.PERSIST)
-		
-
-		private List<Department> departments= new ArrayList<Department>();
-         
-         public Company(String name, List<Employee> employees , List<Department> departments)
+    public Company(String name, List<Employee> employees , List<Department> departments)
           {
                    this.name=name;
                    this.employees=employees;
                    this.departments=departments; 
           }
         
-         public Company(String name) {
+    public Company(String name) {
         		super();
         		this.name = name;
         		this.employees = new ArrayList<Employee>();
         		this.departments = new ArrayList<Department>();
         	}
 
-        	public String getName() {
+    public String getName() {
         		return name;
         	}
-        	public void setName(String name) {
+    public void setName(String name) {
         		this.name = name; 
         	}
         	
-            public List<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         		return employees;
         	}
         	
      	
-        	public List<Department> getDepartments() {
+    public List<Department> getDepartments() {
         		return departments;
         	}
+    public void addDepartment(Department department){
+        departments.add(department);
+        }
 
-         
-        	public void addDepartment(Department department){
-        		departments.add(department);
-        	}
 
-        	public void addEmployee(Employee employee){
-        		employees.add(employee);
-        	}
         	
-          
-          
+    @OneToMany(mappedBy="company")
+    public List<Employee> getEmployee() {
+                return employees;
+            }         
+            
+    public void setEmployee(List<Employee> employees) {
+                this.employees = employees;
+            }
+            	
+    public void addEmployee(Employee employee){
+                employees.add(employee);
+                employee.setCompany(this);
+            }
        
+
         	
-          private void printRegister(List<?> arr) {
+     private void printRegister(List<?> arr) {
         	  for (Object o : arr) {
         		  System.out.println(o);
         	  }
         	  System.out.println();
           }
           
-          public void printEmployeesAll () {
+     public void printEmployeesAll () {
         	  System.out.println("Employees: ");
         	  printRegister(employees);
         	  System.out.println(); 
           }
           
-          public void printDepartments() {
+     public void printDepartments() {
         	  System.out.println("Departments: ");
         	  printRegister(departments);
         	  System.out.println(); 
           }
           
-          public void printAll () {
+     public void printAll () {
         	  printDepartments();
         	  printEmployeesAll ();
           }
           
-          public void printEmployeeBySurname (String surname) {
+     public void printEmployeeBySurname (String surname) {
         	  try {
         		System.out.println("Employee o nazwisku " + surname + ": ");
 				System.out.println(searchEmployeeBySurname(surname) + "\n");
@@ -98,7 +100,7 @@ import javax.persistence.OneToMany;
 			}
           }
           
-          public void printEmployeeByPhrase (String phrase) {
+      public void printEmployeeByPhrase (String phrase) {
         	  try {
         		System.out.println("Employee z fraza " + phrase + ": ");
         		printRegister(searchEmployeeByPhrase(phrase));
@@ -107,7 +109,7 @@ import javax.persistence.OneToMany;
 			}
           }
           
-          public void printEmployeeByName (String name) {
+      public void printEmployeeByName (String name) {
         	  try {
         		System.out.println("Pracownik o imieniu " + name + ": ");
         		printRegister(searchEmployeeByName(name));
@@ -117,7 +119,7 @@ import javax.persistence.OneToMany;
           }
           
 
-          public void printDepartmentByPhrase(String phrase) {
+      public void printDepartmentByPhrase(String phrase) {
         	  System.out.println("Dzialy z fraza " + phrase + ": ");
         	  try {
 				printRegister(searchDepartmentByPhrase(phrase));
@@ -127,7 +129,7 @@ import javax.persistence.OneToMany;
           }
     	  
           
-          public void printDepartmentByName(String name) {
+      public void printDepartmentByName(String name) {
         	  System.out.println("Department o nazwie " + name + ": ");
         	  try {
 				System.out.println(searchDepartmentByName(name));
@@ -139,7 +141,7 @@ import javax.persistence.OneToMany;
           
 
           
-          public ArrayList<Employee> searchEmployeeByPhrase (String phrase) throws MyException {
+      public ArrayList<Employee> searchEmployeeByPhrase (String phrase) throws MyException {
         	  
         	  ArrayList<Employee> arr = new ArrayList<Employee>();
         	  
@@ -155,7 +157,7 @@ import javax.persistence.OneToMany;
         	  else return arr;
           }
           
-          public ArrayList<Employee> searchEmployeeByName (String name) throws MyException {
+      public ArrayList<Employee> searchEmployeeByName (String name) throws MyException {
         	  
         	  ArrayList<Employee> arr = new  ArrayList<Employee>();
         	  
@@ -169,7 +171,7 @@ import javax.persistence.OneToMany;
         	  else return arr;
           }
           
-          public Employee searchEmployeeBySurname (String surname) throws MyException {
+      public Employee searchEmployeeBySurname (String surname) throws MyException {
         	  try {
         		  
         		  return getEmplRef(surname);
@@ -179,7 +181,7 @@ import javax.persistence.OneToMany;
         	  }
           }          
         	
-          private Employee getEmplRef (String surname) throws MyException {
+       private Employee getEmplRef (String surname) throws MyException {
         	  
         	  for (Employee e : employees) {
         		  if (e.getSurname() == surname) return e;
@@ -187,7 +189,7 @@ import javax.persistence.OneToMany;
         	  throw new MyException("Pracownik o nazwisku " + surname + " nie pracuje w firmie.");
           }
           
-          public void editEmplWynagrodzenie (String surname, double wynagrodzenie) {
+       public void editEmplWynagrodzenie (String surname, double wynagrodzenie) {
         	  
         	  try {
         		  Employee p = getEmplRef(surname);
@@ -199,7 +201,7 @@ import javax.persistence.OneToMany;
         	  }
           }
           
-          public void deleteEmployee (String surname) {
+       public void deleteEmployee (String surname) {
         	  
         	  try {
         		  employees.remove(getEmplRef(surname));
@@ -210,9 +212,8 @@ import javax.persistence.OneToMany;
         	  
           }
  
-
           
-          public ArrayList<Department> searchDepartmentByPhrase (String phrase) throws MyException {
+       public ArrayList<Department> searchDepartmentByPhrase (String phrase) throws MyException {
         	  
         	  ArrayList<Department> arr = new ArrayList<Department>();
         	  
@@ -225,7 +226,7 @@ import javax.persistence.OneToMany;
         	  else return arr;
           }
           
-          public Department searchDepartmentByName (String name) throws MyException {
+       public Department searchDepartmentByName (String name) throws MyException {
         	  try {
         		  return getDepartmentRef(name);
         	  }
@@ -234,7 +235,7 @@ import javax.persistence.OneToMany;
         	  }
           }
           
-          private Department getDepartmentRef (String name) throws MyException {
+       private Department getDepartmentRef (String name) throws MyException {
         	  
         	  for (Department d : departments) {
         		  if (d.getName() == name) return d;
@@ -242,7 +243,7 @@ import javax.persistence.OneToMany;
         	  throw new MyException("Dzial o nazwie " + name + " nie istnieje w firmie.");
           }
           
-          public void editDepartmentName (String oldName, String newName) {
+       public void editDepartmentName (String oldName, String newName) {
         	  
         	  try {
         		  Department d = getDepartmentRef(oldName);
@@ -253,7 +254,7 @@ import javax.persistence.OneToMany;
         	  }
           }
           
-          public void deleteDepartment (String name) {
+       public void deleteDepartment (String name) {
         	  
         	  try {
         		  departments.remove(getDepartmentRef(name));
@@ -261,9 +262,8 @@ import javax.persistence.OneToMany;
         	  catch (Exception e) {
         		  System.out.println("Dzial o nazwie " + name + " nie funkcjonuje w firmie.");
         	  }
-        	  
-          }
-          
+          }  
+
     }
 
 

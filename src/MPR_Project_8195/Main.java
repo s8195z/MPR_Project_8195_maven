@@ -28,7 +28,7 @@ public static void main(String[] args) throws Exception {
       session.beginTransaction();
       session.save(p);   
       session.getTransaction().commit();
-      
+      session.close();
    
       /* Testowanie dzialow */
   

@@ -9,6 +9,8 @@
     <!-- Polaczenie do DB -->
     <property name="connection.driver_class">org.hsqldb.ClientConnection</property>
     <property name="connection.url">jdbc:hsqldb:hsql://localhost/workdb</property>
+    
+    <property name="connection.url">jdbc:hsqldb:file:src/db/companydb;shutdown=true</property>
    
     <!-- connection pool -->
 
